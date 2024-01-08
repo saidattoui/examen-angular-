@@ -1,0 +1,28 @@
+Nom: <input name="search" type="text" [(ngModel)]="searchText" (change)="search()"/>
+
+
+<fieldset *ngFor="let product of products" class="product-card">
+  <legend>{{ product.name }}</legend>
+  <p>Price: {{ product.price }}</p>
+  <button (click)="buyProduct(product)">Buy</button>
+  <button (click)="viewDetails(product)">Details</button>
+  <button (click)="startEditing(product)">Update</button>
+  <button (click)="deleteProduct(product)">Supprimer</button>
+</fieldset>
+<form [formGroup]="formProduct" *ngIf="isEditMode && formVisible">
+  <div>
+    <label for="name">Nom :</label>
+    <input type="text" id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="price">Prix :</label>
+    <input type="number" id="price" formControlName="price">
+  </div>
+  <div>
+    <label for="description">Description :</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+  <div>
+    <button (click)="updateProduct()">Mettre à jour</button>
+  </div>
+</form>
